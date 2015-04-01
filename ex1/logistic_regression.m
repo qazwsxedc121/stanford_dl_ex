@@ -8,6 +8,7 @@ function [f,g] = logistic_regression(theta, X,y)
   %
 
   m=size(X,2);
+  n=size(X,1);
   
   % initialize objective value and gradient.
   f = 0;
@@ -22,3 +23,5 @@ function [f,g] = logistic_regression(theta, X,y)
   %        up the gradients (df/dtheta) for each example. Store the result in 'g'.
   %
 %%% YOUR CODE HERE %%%
+  f = - sum( y * log(sigmf(theta'*X, [1 0]))' + (1-y) * log(1-sigmf(theta'*X, [1 0]))');
+  g = X * ( sigmf(theta'*X, [1 0]) - y)';
